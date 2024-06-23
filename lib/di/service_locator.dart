@@ -1,4 +1,5 @@
 import 'package:aniime_news/constants/api_constants.dart';
+import 'package:aniime_news/data/db/app_database.dart';
 import 'package:aniime_news/repository/anime_repository.dart';
 import 'package:aniime_news/services/dio_helper.dart';
 import 'package:dio/dio.dart';
@@ -24,5 +25,6 @@ void setup() {
   );
 
   getIt.registerSingleton<DioHelper>(DioHelper()); //interceptor
-  getIt.registerSingleton<HomeRepository>(HomeRepository());
+  getIt.registerSingleton<AppDatabase>(AppDatabase());
+  getIt.registerSingleton<AnimeRepository>(AnimeRepository());
 }

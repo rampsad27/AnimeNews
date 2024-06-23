@@ -15,7 +15,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeEventDataRequest>((event, emit) async {
       try {
         emit(state.copyWith(homeStateEnum: HomeStateEnum.loading));
-        final response = await homeRepository.getHomeScreenData();
+        final response = await animeRepository.getAnime();
         emit(state.copyWith(
           homeStateEnum: HomeStateEnum.success,
           animeModel: response,
@@ -58,6 +58,5 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     // });
   }
 
-  final HomeRepository homeRepository = getIt.get<HomeRepository>();
-  // final NewsRepository newsRepository = getIt.get<NewsRepository>();
+  final AnimeRepository animeRepository = getIt.get<AnimeRepository>();
 }

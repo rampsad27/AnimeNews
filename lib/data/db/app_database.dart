@@ -2,6 +2,8 @@ import 'dart:developer' as developer;
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:aniime_news/data/db/anime/anime_dao.dart';
+import 'package:aniime_news/data/db/anime/anime_table.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
@@ -13,14 +15,27 @@ import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 part 'app_database.g.dart';
 
 @DriftDatabase(
-    // tables: [NewsTable],
-    // daos: [NewsDao],
-    )
+  tables: [AnimeTable],
+  daos: [AnimeDao],
+)
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 4;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onUpgrade: (m, from, to) async {
+          log("Schema Migration $m $from $to");
+          if (from < schemaVersion) {
+            for (var element in allTables) {
+              await m.deleteTable(element.actualTableName);
+              await m.createTable(element);
+            }
+          }
+        }, //old preserve idk
+      );
 }
 
 LazyDatabase _openConnection() {
