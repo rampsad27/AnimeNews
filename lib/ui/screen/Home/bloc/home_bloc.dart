@@ -1,7 +1,7 @@
 import 'package:aniime_news/di/service_locator.dart';
 import 'package:aniime_news/model/anime_model.dart';
 
-import 'package:aniime_news/repository/home_repository.dart';
+import 'package:aniime_news/repository/anime_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

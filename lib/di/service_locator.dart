@@ -1,5 +1,5 @@
 import 'package:aniime_news/constants/api_constants.dart';
-import 'package:aniime_news/repository/home_repository.dart';
+import 'package:aniime_news/repository/anime_repository.dart';
 import 'package:aniime_news/services/dio_helper.dart';
 import 'package:dio/dio.dart';
 

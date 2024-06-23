@@ -49,9 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           },
           child: BlocBuilder<HomeBloc, HomeState>(
-            // buildWhen: (previous, current) =>
-            //     current.homeStateEnum == HomeStateEnum.loading ||
-            //     current.homeStateEnum == HomeStateEnum.success,
             builder: (context, state) {
               return Column(
                 children: [
@@ -65,20 +62,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 120,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(state
-                                            .animeModel?[index].pictureUrl ??
-                                        'default_image_url'), // Provide a default image URL
-                                    fit: BoxFit
-                                        .cover, // Adjust how the image fits the container
+                                    image: NetworkImage(
+                                        state.animeModel?[index].pictureUrl ??
+                                            'default_image_url'),
+                                    fit: BoxFit.cover,
                                   ),
-                                  borderRadius: BorderRadius.circular(
-                                      8), // Optional: rounded corners
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
                               title: Text(
                                   '${index + 1} ${state.animeModel?[index].title ?? "chaina"}'),
-                              subtitle: Text(
-                                  state.animeModel?[index].type ?? "ccchaina"),
+                              subtitle: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(state.animeModel?[index].type ?? 'N/A'),
+                                  Text(state.animeModel?[index].airedOn ??
+                                      "ccchaina"),
+                                ],
+                              ),
                             );
                           }))
                 ],
