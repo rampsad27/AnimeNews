@@ -1,5 +1,6 @@
 import 'package:aniime_news/constants/api_constants.dart';
 import 'package:aniime_news/data/db/app_database.dart';
+import 'package:aniime_news/di/fcm_notification_helper.dart';
 import 'package:aniime_news/repository/anime_repository.dart';
 import 'package:aniime_news/services/dio_helper.dart';
 import 'package:dio/dio.dart';
@@ -8,7 +9,8 @@ import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
-void setup() {
+Future<void> setup() async {
+  getIt.registerSingleton<FCMNotificationHelper>(FCMNotificationHelper());
   getIt.registerSingleton<Dio>(
     Dio(
       BaseOptions(

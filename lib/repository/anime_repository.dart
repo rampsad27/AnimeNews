@@ -4,14 +4,15 @@ import 'package:aniime_news/constants/api_constants.dart';
 import 'package:aniime_news/data/db/app_database.dart';
 import 'package:aniime_news/di/service_locator.dart';
 import 'package:aniime_news/model/anime_model.dart';
+import 'package:aniime_news/repository/abstract_repository.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class AnimeRepository {
+class AnimeRepository implements AuthenticationRepository {
   final Dio _dio = getIt.get<Dio>();
   final AppDatabase _appDatabase = getIt.get<AppDatabase>();
-
+  @override
   Future<List<AnimeModel>?> getAnime() async {
     try {
       var animeFromLocal = await _getAnimeFromLocalDb();
@@ -34,10 +35,12 @@ class AnimeRepository {
     }
   }
 
+  @override
   Future<List<AnimeModel>?> _getAnimeFromLocalDb() async {
     return await _appDatabase.animeDao.getAnime();
   }
 
+  @override
   Future<void> deleteAnimeByRank(int rank) async {
     await _appDatabase.animeDao.deleteAnimeByrank(rank);
   }

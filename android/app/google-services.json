@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "515658273801",
+    "project_id": "animenotif-83096",
+    "storage_bucket": "animenotif-83096.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515658273801:android:e69cf7a12687435ca794d8",
+        "android_client_info": {
+          "package_name": "com.example.aniime_news"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjDx16bXL74toqzrFo1-kslIiqiX88zfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
